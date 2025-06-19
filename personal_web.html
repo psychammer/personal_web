@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Webpage</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #35424a;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            margin-bottom: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-right: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        nav ul li a:hover {
+            color: #e8491d;
+        }
+        
+        /* About Section */
+        .about {
+            display: flex;
+            margin-bottom: 40px;
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 30px;
+            border: 5px solid #35424a;
+        }
+        
+        .about-content h2 {
+            color: #35424a;
+            margin-bottom: 15px;
+        }
+        
+        /* Skills Section */
+        .skills {
+            margin-bottom: 40px;
+        }
+        
+        .skills h2 {
+            color: #35424a;
+            margin-bottom: 15px;
+        }
+        
+        .skill-bars {
+            list-style: none;
+        }
+        
+        .skill-bars li {
+            margin-bottom: 15px;
+        }
+        
+        .skill-name {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .skill-bar {
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+        }
+        
+        .skill-percent {
+            display: block;
+            height: 100%;
+            background-color: #e8491d;
+            border-radius: 5px;
+        }
+        
+        /* Projects Section */
+        .projects {
+            margin-bottom: 40px;
+        }
+        
+        .projects h2 {
+            color: #35424a;
+            margin-bottom: 15px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-info {
+            padding: 15px;
+        }
+        
+        .project-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-carousel {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .project-carousel .project-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .project-carousel .project-img.active {
+            opacity: 1;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 5px;
+        }
+
+        .carousel-button.prev {
+            left: 10px;
+        }
+
+        .carousel-button.next {
+            right: 10px;
+        }
+
+        .carousel-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+
+
+
+        
+        /* Contact Section */
+        .contact {
+            margin-bottom: 40px;
+        }
+        
+        .contact h2 {
+            color: #35424a;
+            margin-bottom: 15px;
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: #e8491d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            align-self: flex-start;
+        }
+        
+        button:hover {
+            background-color: #333;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #35424a;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .social-icons {
+            margin-top: 10px;
+        }
+        
+        .social-icon {
+            font-size: 20px;
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        
+        /* Dark Mode Toggle */
+        .mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #35424a;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        body.dark-mode {
+            background-color: #333;
+            color: #f4f4f4;
+        }
+        
+        body.dark-mode .project-card {
+            background-color: #444;
+            color: #f4f4f4;
+        }
+        
+        body.dark-mode .skill-bar {
+            background-color: #555;
+        }
+        
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group textarea {
+            background-color: #444;
+            color: #f4f4f4;
+            border-color: #555;
+        }
+        body.dark-mode h2 {
+            color: #f4f4f4; /* Light color for dark background */
+        }
+        body.dark-mode .contact span,
+        body.dark-mode .contact a {
+            color: #ffffff; /*dark mode color */
+        }
+
+
+        /* */
+        .cv-download {
+            display: inline-block;        /* Makes it behave like a button */
+            background-color: #e8491d; 
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease; /* Smooth hover transition */
+        }
+
+        .cv-download:hover {
+            background-color: #333;        /* Darkens on hover */
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <button class="mode-toggle" id="modeToggle">🌓</button>
+    
+    <header>
+        <div class="container">
+            <h1>Roljohn C. Frilles</h1>
+            <p>Novice Web Developer | Data Science Enthusiast | Student</p>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#notebooks">Colab Notebooks</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="Resume.pdf" download="Roljohn_Frilles_CV.pdf" class="cv-download">Download My CV</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section id="about" class="about">
+            <img src="me.jpg" alt="Profile Image" class="profile-img">
+            <div class="about-content">
+                <h2>About Me</h2>
+                <p>Hello! I'm a student at Polytechnic University of the Philippines studying Computer Science. I'm passionate about Machine Learning, and I'm constantly learning new technologies to improve my skills.</p>
+                <p>When I'm not coding, you can find me solving Rubik's Cube, reading mangas, or watching anime. I'm also interested in Application and Web Development and always looking for new challenges and opportunities to grow.</p>
+                <p>I created this relatively clean, user-friendly website that deliver a great experience to my visitors.</p>
+            </div>
+        </section>
+        
+        <section id="skills" class="skills">
+            <h2>My Skills</h2>
+            <ul class="skill-bars">
+                <li>
+                    <span class="skill-name">Python</span>
+                    <div class="skill-bar">
+                        <span class="skill-percent" style="width: 89%;"></span>
+                    </div>
+                </li>
+                <li>
+                    <span class="skill-name">Matplotlib, Numpy, Pandas</span>
+                    <div class="skill-bar">
+                        <span class="skill-percent" style="width: 85%;"></span>
+                    </div>
+                </li>
+                <li>
+                    <span class="skill-name">PyTorch</span>
+                    <div class="skill-bar">
+                        <span class="skill-percent" style="width: 85%;"></span>
+                    </div>
+                </li>
+                <li>
+                    <span class="skill-name">Flutter</span>
+                    <div class="skill-bar">
+                        <span class="skill-percent" style="width: 80%;"></span>
+                    </div>
+                </li>
+                <li>
+                    <span class="skill-name">HTML</span>
+                    <div class="skill-bar">
+                        <span class="skill-percent" style="width: 40%;"></span>
+                    </div>
+                </li>
+                <li>
+                    <span class="skill-name">CSS</span>
+                    <div class="skill-bar">
+                        <span class="skill-percent" style="width: 30%;"></span>
+                    </div>
+                </li>
+                <li>
+                    <span class="skill-name">JavaScript</span>
+                    <div class="skill-bar">
+                        <span class="skill-percent" style="width: 35%;"></span>
+                    </div>
+                </li>
+                <li>
+                    <span class="skill-name">Graphic Design</span>
+                    <div class="skill-bar">
+                        <span class="skill-percent" style="width: 38%;"></span>
+                    </div>
+                </li>
+                <li>
+                    <span class="skill-name">UI/UX</span>
+                    <div class="skill-bar">
+                        <span class="skill-percent" style="width: 38%;"></span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        
+        <section id="projects" class="projects">
+            <h2>My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-carousel">
+                        <button class="carousel-button prev" onclick="prevImage(this)">&#10094;</button>
+                        <img src="input.png" alt="Project 3" class="project-img active">
+                        <img src="output.png" alt="Project 3 Alt" class="project-img">
+                        <img src="yolov82.png" alt="Project 3 Alt 2" class="project-img">
+                        <button class="carousel-button next" onclick="nextImage(this)">&#10095;</button>
+                    </div>
+                    <div class="project-info">
+                        <h3>YOLOv8 Object Detection app</h3>
+                        <p>During my first year as a student, I created a simple application using Gradio in Hugging Face, a Python library for building interactive machine learning interfaces. The application utilizes YOLOv8, a state-of-the-art detection model in 2022, to analyze uploaded images. It detects objects, draws bounding boxes around them, and classifies each object. This project served as an exciting entry point into machine learning and computer vision, giving me practical experience in integrating models and designing user-friendly interfaces.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-carousel">
+                        <button class="carousel-button prev" onclick="prevImage(this)">&#10094;</button>
+                        <img src="IKEA.png" alt="Project 1" class="project-img active">
+                        <img src="IKEA1.png" alt="Project 1 Alt" class="project-img">
+                        <img src="IKEA2.png" alt="Project 1 Alt 2" class="project-img">
+                        <button class="carousel-button next" onclick="nextImage(this)">&#10095;</button>
+                    </div>
+                    <div class="project-info">
+                        <h3>DAA Project using Knapsack Algorithm</h3>
+                        <p>In my second year of college, as part of the Design and Analysis of Algorithms course, my team developed a mobile logistics application that optimizes truck loading using the knapsack algorithm. The app efficiently determines the best combination of items to fit onto pallets, maximizing both space utilization and profit. This project showcased my ability to apply algorithmic concepts to real-world problems, enhancing my skills in coding and problem-solving.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-carousel">
+                        <button class="carousel-button prev" onclick="prevImage(this)">&#10094;</button>
+                        <img src="kuwartrack.png" alt="Project 2" class="project-img active">
+                        <img src="transaction.png" alt="Project 2 Alt" class="project-img">
+                        <img src="Edit.png" alt="Project 2 Alt 2" class="project-img">
+                        <button class="carousel-button next" onclick="nextImage(this)">&#10095;</button>
+                    </div>
+                    <div class="project-info">
+                        <h3>Kuwartrack: Hakbang Mo ay Laging Swak!</h3>
+                        <p>In my third year, my team and I created a simple financial tracker mobile app to help users manage their expenses effectively. The app features a Home page for sorting weekly expenses by category and viewing total spending, a Transaction page for tracking spending across time frames, setting budgets, and managing categories, and a Category Breakdown section for editing transactions and viewing detailed, read-only expense summaries. This project honed my skills in user-focused design and data management, delivering a practical tool for personal finance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="notebooks" class="notebooks" style="text-align: center; padding: 20px;">
+            <h2>Sample Data Science Notebooks I worked On</h2>
+            <div>
+                <a href="https://colab.research.google.com/drive/1_33EVuiKfFZs5b8ukIP9tqc_ZZC4715l?usp=sharing"><button>Notebook 1</button></a>
+                <a href="https://colab.research.google.com/drive/1zCcKEU7MPP2M_dk785U5MWRdrsCwWHGK?usp=sharing"><button>Notebook 2</button></a>
+                <a href="https://colab.research.google.com/drive/1tIZ-T5A_NyQalbAlBk6FCaCdd4-Yx0Pu?usp=sharing"><button>Notebook 3</button></a>
+              </div>
+            <hr>
+            <div id="notebook-embed" style="margin-top: 20px; text-align: left; display: none;">
+                <!-- Notebook will be embedded here -->
+            </div>
+        </section>
+
+        <section id="notebooks" class="notebooks" style="text-align: center; padding: 20px;">
+            <h2>Notebook I am currently working on</h2>
+            <div>
+                <script src="https://gist.github.com/psychammer/4252e43f72b1be3ae8743767d5fb2d60.js"></script>
+              </div>
+            <hr>
+        </section>
+        
+        
+        
+        <section id="contact" class="contact">
+            <h2>Contact Me</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <img src="globe-logo.png" alt="Phone Icon" style="width: 40px; margin-right: 10px;">
+                    <span>+0954 176 0422</span>
+                </li>
+                <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <img src="gmail-icon.png" alt="Email Icon" style="width: 40px; margin-right: 10px;">
+                    <span>roljohn.frilles87@email.com</span>
+                </li>
+                <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <a href="https://www.facebook.com/roljohn.frilles.1/" style="display: flex; align-items: center;">
+                        <img src="facebook-logo.png" alt="GitHub Icon" style="width: 40px; margin-right: 10px;"> 
+                        <span>Facebook Profile</span>
+                    </a>
+                </li>
+                <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <a href="https://www.linkedin.com/in/roljohn-frilles-aa1138288" style="display: flex; align-items: center;">
+                        <img src="linkedin-logo.png" alt="LinkedIn Logo" style="width: 40px; margin-right: 10px;">
+                        <span>LinkedIn Profile</span>
+                    </a>
+                </li>                
+                <li style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <a href="https://github.com/psychammer" style="display: flex; align-items: center;">
+                        <img src="GitHub-Logo.png" alt="GitHub Icon" style="width: 40px; margin-right: 10px;"> 
+                        <span>GitHub Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </section>      
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025. All Rights Reserved.</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon">📱</a>
+                <a href="#" class="social-icon">📧</a>
+                <a href="#" class="social-icon">🔗</a>
+                <a href="#" class="social-icon">📷</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        
+        // Dark mode toggle
+        const modeToggle = document.getElementById('modeToggle');
+        modeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+        
+        // Animate skill bars on scroll
+        function animateSkillBars() {
+            const skillsSection = document.querySelector('.skills');
+            const skillBars = document.querySelectorAll('.skill-percent');
+            
+            const sectionPosition = skillsSection.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.3;
+            
+            if (sectionPosition < screenPosition) {
+                skillBars.forEach(bar => {
+                    bar.style.width = bar.parentElement.getAttribute('data-width');
+                });
+            }
+        }
+        
+        // Initialize skill bar widths
+        document.querySelectorAll('.skill-percent').forEach(bar => {
+            const width = bar.style.width;
+            bar.parentElement.setAttribute('data-width', width);
+            bar.style.width = '0';
+        });
+        
+        // Listen for scroll events
+        window.addEventListener('scroll', animateSkillBars);
+        
+        // Trigger once on page load
+        window.addEventListener('load', animateSkillBars);
+
+
+        // carousel image
+        function nextImage(button) {
+            const carousel = button.closest('.project-carousel');
+            const images = carousel.querySelectorAll('.project-img');
+            let activeIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+            images[activeIndex].classList.remove('active');
+            activeIndex = (activeIndex + 1) % images.length;
+            images[activeIndex].classList.add('active');
+        }
+
+        function prevImage(button) {
+            const carousel = button.closest('.project-carousel');
+            const images = carousel.querySelectorAll('.project-img');
+            let activeIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+            images[activeIndex].classList.remove('active');
+            activeIndex = (activeIndex - 1 + images.length) % images.length;
+            images[activeIndex].classList.add('active');
+        }
+
+        
+
+
+    </script>
+</body>
+</html>

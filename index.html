@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roljohn C. Frilles - Portfolio</title>
     <style>
-        /* CSS Reset */
         * {
             margin: 0;
             padding: 0;
@@ -230,10 +229,15 @@
             object-fit: contain;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
+            z-index: 1;
+            pointer-events: none;
+            cursor: zoom-in; /* <!-- NEW --> Magnifying glass cursor */
         }
 
         .project-carousel .project-img.active {
             opacity: 1;
+            z-index: 2;
+            pointer-events: auto;
         }
 
         .carousel-button {
@@ -316,10 +320,15 @@
             object-fit: contain;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
+            z-index: 1;
+            pointer-events: none;
+            cursor: zoom-in; /* <!-- NEW --> Magnifying glass cursor */
         }
 
         .certificate-carousel .certificate-img.active {
             opacity: 1;
+            z-index: 2;
+            pointer-events: auto;
         }
 
         .certificate-carousel .carousel-button {
@@ -539,6 +548,51 @@
             color: #e0e0e0;
         }
         
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            padding-top: 50px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.9); 
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            animation: zoom-in 0.3s ease;
+        }
+
+        @keyframes zoom-in {
+            from {transform: scale(0.8);}
+            to {transform: scale(1);}
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #bbb;
+            text-decoration: none;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .about {
@@ -574,7 +628,6 @@
             }
         }
         
-        /* Animation for scroll reveal */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -678,11 +731,11 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-carousel">
-                        <button class="carousel-button prev" onclick="prevImage(this)">&#10094;</button>
+                        <button class="carousel-button prev" onclick="prevImage(this)">❮</button>
                         <img src="input.png" alt="YOLOv8 Input Interface" class="project-img active">
                         <img src="output.png" alt="YOLOv8 Detection Output" class="project-img">
                         <img src="yolov82.png" alt="YOLOv8 Model Architecture" class="project-img">
-                        <button class="carousel-button next" onclick="nextImage(this)">&#10095;</button>
+                        <button class="carousel-button next" onclick="nextImage(this)">❯</button>
                     </div>
                     <div class="project-info">
                         <h3>YOLOv8 Object Detection Application</h3>
@@ -692,11 +745,11 @@
                 
                 <div class="project-card">
                     <div class="project-carousel">
-                        <button class="carousel-button prev" onclick="prevImage(this)">&#10094;</button>
+                        <button class="carousel-button prev" onclick="prevImage(this)">❮</button>
                         <img src="IKEA.png" alt="IKEA Logistics App Main Interface" class="project-img active">
                         <img src="IKEA1.png" alt="Knapsack Algorithm Implementation" class="project-img">
                         <img src="IKEA2.png" alt="Optimization Results Dashboard" class="project-img">
-                        <button class="carousel-button next" onclick="nextImage(this)">&#10095;</button>
+                        <button class="carousel-button next" onclick="nextImage(this)">❯</button>
                     </div>
                     <div class="project-info">
                         <h3>Smart Logistics Optimizer (Knapsack Algorithm)</h3>
@@ -706,11 +759,11 @@
                 
                 <div class="project-card">
                     <div class="project-carousel">
-                        <button class="carousel-button prev" onclick="prevImage(this)">&#10094;</button>
+                        <button class="carousel-button prev" onclick="prevImage(this)">❮</button>
                         <img src="kuwartrack.png" alt="Kuwartrack Home Dashboard" class="project-img active">
                         <img src="transaction.png" alt="Transaction Management Interface" class="project-img">
                         <img src="Edit.png" alt="Category Management System" class="project-img">
-                        <button class="carousel-button next" onclick="nextImage(this)">&#10095;</button>
+                        <button class="carousel-button next" onclick="nextImage(this)">❯</button>
                     </div>
                     <div class="project-info">
                         <h3>Kuwartrack: Personal Finance Manager</h3>
@@ -720,7 +773,7 @@
                 
                 <div class="project-card">
                     <div class="project-carousel">
-                        <button class="carousel-button prev" onclick="prevImage(this)">&#10094;</button>
+                        <button class="carousel-button prev" onclick="prevImage(this)">❮</button>
                         <img src="cybernix1.jpg" alt="cybernix1" class="project-img active">
                         <img src="cybernix2.jpg" alt="cybernix2" class="project-img">
                         <img src="cybernix3.jpg" alt="cybernix3" class="project-img">
@@ -728,7 +781,7 @@
                         <img src="cybernix5.jpg" alt="cybernix4" class="project-img">
                         <img src="cybernix6.jpg" alt="cybernix4" class="project-img">
                         <img src="cybernix7.jpg" alt="cybernix4" class="project-img">
-                        <button class="carousel-button next" onclick="nextImage(this)">&#10095;</button>
+                        <button class="carousel-button next" onclick="nextImage(this)">❯</button>
                     </div>
                     <div class="project-info">
                         <h3>CyberNix-12 Alphabot: Healthcare Companion for Isolated COVID-19 Patients</h3>
@@ -743,12 +796,12 @@
             <div class="certificates-grid">
                 <div class="certificate-card">
                     <div class="certificate-carousel">
-                        <button class="carousel-button prev" onclick="prevCertificateImage(this)">&#10094;</button>
+                        <button class="carousel-button prev" onclick="prevCertificateImage(this)">❮</button>
                         <img src="Machine Learning Logo.png" alt="ml-logo" class="certificate-img active">
                         <img src="co-head.jpg" alt="Python Programming Badgeco-head" class="certificate-img">
                         <img src="onboarding.png" alt="onboarding" class="certificate-img">
                         <img src="members.png" alt="members" class="certificate-img">
-                        <button class="carousel-button next" onclick="nextCertificateImage(this)">&#10095;</button>
+                        <button class="carousel-button next" onclick="nextCertificateImage(this)">❯</button>
                     </div>
                     <div class="certificate-info">
                         <h3>AWS Cloud Club Skill Building: ML/AI CO-HEAD</h3>
@@ -758,13 +811,13 @@
                 
                 <div class="certificate-card">
                     <div class="certificate-carousel">
-                        <button class="carousel-button prev" onclick="prevCertificateImage(this)">&#10094;</button>
+                        <button class="carousel-button prev" onclick="prevCertificateImage(this)">❮</button>
                         <img src="Certificate of Recognition-comday.jpg" alt="COR-comday" class="certificate-img active">
                         <img src="technicals.JPG" alt="technical" class="certificate-img">
                         <img src="winner.JPG" alt="winner" class="certificate-img">
                         <img src="VP.JPG" alt="VP" class="certificate-img">
                         <img src="group.JPG" alt="group" class="certificate-img">
-                        <button class="carousel-button next" onclick="nextCertificateImage(this)">&#10095;</button>
+                        <button class="carousel-button next" onclick="nextCertificateImage(this)">❯</button>
                     </div>
                     <div class="certificate-info">
                         <h3>Amazon Web Services (AWS) Student Community Day 2024</h3>
@@ -774,10 +827,10 @@
                 
                 <div class="certificate-card">
                     <div class="certificate-carousel">
-                        <button class="carousel-button prev" onclick="prevCertificateImage(this)">&#10094;</button>
+                        <button class="carousel-button prev" onclick="prevCertificateImage(this)">❮</button>
                         <img src="segmentation.jpg" alt="segmentation" class="certificate-img active">
                         <img src="localization.jpg" alt="Localization" class="certificate-img">
-                        <button class="carousel-button next" onclick="nextCertificateImage(this)">&#10095;</button>
+                        <button class="carousel-button next" onclick="nextCertificateImage(this)">❯</button>
                     </div>
                     <div class="certificate-info">
                         <h3>Computer Vision</h3>
@@ -787,11 +840,11 @@
                 
                 <div class="certificate-card">
                     <div class="certificate-carousel">
-                        <button class="carousel-button prev" onclick="prevCertificateImage(this)">&#10094;</button>
+                        <button class="carousel-button prev" onclick="prevCertificateImage(this)">❮</button>
                         <img src="collabothon.jpg" alt="collabothon" class="certificate-img active">
                         <img src="flutter-cert2.jpg" alt="Flutter Badge" class="certificate-img">
                         <img src="flutter-cert3.jpg" alt="Flutter Projects" class="certificate-img">
-                        <button class="carousel-button next" onclick="nextCertificateImage(this)">&#10095;</button>
+                        <button class="carousel-button next" onclick="nextCertificateImage(this)">❯</button>
                     </div>
                     <div class="certificate-info">
                         <h3>Collabothon: IdeaJam Co-Facilitator</h3>
@@ -882,7 +935,7 @@
     
     <footer>
         <div class="container">
-            <p>&copy; 2025 Roljohn C. Frilles. All Rights Reserved.</p>
+            <p>© 2025 Roljohn C. Frilles. All Rights Reserved.</p>
             <p style="margin-top: 10px; opacity: 0.8;">Built with passion for clean code and great user experiences</p>
             <div class="social-icons">
                 <a href="tel:+09541760422" class="social-icon" title="Call me">📱</a>
@@ -892,9 +945,13 @@
             </div>
         </div>
     </footer>
+
+    <div id="imageModal" class="modal">
+        <span class="close-modal">×</span>
+        <img class="modal-content" id="modalImage">
+    </div>
     
     <script>
-        // Smooth scrolling for navigation links
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -915,7 +972,6 @@
         const modeToggle = document.getElementById('modeToggle');
         const body = document.body;
         
-        // Check for saved theme preference or default to light mode
         const currentTheme = localStorage.getItem('theme') || 'light';
         if (currentTheme === 'dark') {
             body.classList.add('dark-mode');
@@ -924,12 +980,33 @@
         modeToggle.addEventListener('click', function() {
             body.classList.toggle('dark-mode');
             
-            // Save theme preference
             const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
             localStorage.setItem('theme', theme);
         });
+
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const closeModal = document.querySelector(".close-modal");
         
-        // Animate skill bars on scroll
+        document.querySelectorAll('.project-img, .certificate-img').forEach(img => {
+            img.addEventListener('click', function() {
+                if (this.classList.contains('active')) {
+                    modal.style.display = "flex";
+                    modalImg.src = this.src;
+                }
+            });
+        });
+
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        
         function animateSkillBars() {
             const skillsSection = document.querySelector('.skills');
             const skillBars = document.querySelectorAll('.skill-percent');
@@ -948,12 +1025,10 @@
                     }, 100);
                 });
                 
-                // Remove event listener after animation
                 window.removeEventListener('scroll', animateSkillBars);
             }
         }
         
-        // Scroll reveal animation
         function revealOnScroll() {
             const reveals = document.querySelectorAll('.fade-in');
             
@@ -968,7 +1043,6 @@
             });
         }
         
-        // Carousel functionality for projects
         function nextImage(button) {
             const carousel = button.closest('.project-carousel');
             const images = carousel.querySelectorAll('.project-img');
@@ -989,7 +1063,6 @@
             images[activeIndex].classList.add('active');
         }
         
-        // Carousel functionality for certificates
         window.nextCertificateImage = function(button) {
             const carousel = button.closest('.certificate-carousel');
             const images = carousel.querySelectorAll('.certificate-img');
@@ -1018,7 +1091,6 @@
             revealOnScroll();
         });
         
-        // Typing effect for header subtitle
         function typeWriter(element, text, speed = 100) {
             let i = 0;
             element.innerHTML = '';
@@ -1033,14 +1105,12 @@
             typing();
         }
         
-        // Initialize typing effect
         window.addEventListener('load', () => {
             const subtitle = document.querySelector('header p');
             const originalText = subtitle.textContent;
             typeWriter(subtitle, originalText, 50);
         });
         
-        // Add loading animation
         window.addEventListener('load', () => {
             document.body.style.opacity = '0';
             document.body.style.transition = 'opacity 0.5s ease-in-out';
@@ -1050,7 +1120,6 @@
             }, 100);
         });
         
-        // Enhanced carousel with keyboard support
         document.addEventListener('keydown', (e) => {
             const focusedProjectCarousel = document.querySelector('.project-carousel:hover');
             const focusedCertificateCarousel = document.querySelector('.certificate-carousel:hover');
@@ -1076,7 +1145,6 @@
             }
         });
         
-        // Parallax effect for header
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             const scrolled = window.pageYOffset;
